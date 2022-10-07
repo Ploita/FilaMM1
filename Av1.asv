@@ -43,10 +43,9 @@ while(pacotes_simulados < pacotes_total)
     tempo_sim = tempo_sim + temp;
     %Atualização do memorial descritivo
     descrito(ite,:) = [tempo_sim,pri];
-    ite=ite+1;
     
     if(pri==4) %evento de saída
-        %Pacote já saiu, busca de novo pacote por prioridade
+        %Pacote já saiu, busca de novo pacot
         if q_high > 0
                 q_high = q_high - 1;
                 atraso_total = atraso_total + tempo_sim - fila_high(1);
@@ -78,12 +77,10 @@ while(pacotes_simulados < pacotes_total)
 %         pacotes_simulados = pacotes_simulados +1;
         
     elseif (pri == 3) %Prioridade alta
-        %Se o servidor estiver disponível não entra na fila
         if(estado_servidor)
             quadro(4,2) = exprnd(media_service);
             estado_servidor = 0;
         else
-            %Aumenta o tamanho da fila
             q_high = q_high + 1;
             fila_high(q_high) = tempo_sim;
         end
@@ -116,6 +113,7 @@ while(pacotes_simulados < pacotes_total)
         pacotes_simulados = pacotes_simulados +1;
         
     end
+    ite=ite+1;
 end
 
 
