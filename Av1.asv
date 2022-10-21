@@ -6,15 +6,15 @@ util(1:10) = 0;     % taxa de utilização do servidor
 avg_num_in_queue(1:10) = 0;     % tempo de fila/tempo de simulação
 avg_delay(1:10) = 0;    %atraso médio
 P(1:10) = 1;    %intensidade de tráfego
+ 
 
-
-for indice = 1:100
+for indice = 1:50
     tempo_sim =0.00; %tempo de simulação
     estado_servidor = 1; %Disponível (1) ou ocupado (0)
     pacotes_total = 50; %total de iterações a serem feitas
     pacotes_simulados = 0; %total de iterações realizadas
-    media_chegada = 0.01*indice;   %tempo médio de chegada normal 
-    media_service =0.1;     %tempo médio de serviço
+    %media_chegada = 0.01;   %tempo médio de chegada normal
+    media_service =1;     %tempo médio de serviço
     time_server_free = 0; %tempo do serviço ocupado
     atraso_total = 0;   %tempo total de atraso
     tempo_fila = 0;     %tempo total em fila
@@ -238,6 +238,7 @@ for indice = 1:100
     avg_num_in_queue(indice) = tempo_fila/tempo_sim;
     avg_delay(indice) = sum(tabela(:,6))/pacotes_simulados;
     P(indice) = media_chegada/media_service;
+    indice = indice + 1;
 end
 
 figure('name','Taxa de utilização');
